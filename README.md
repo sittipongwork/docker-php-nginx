@@ -1,4 +1,4 @@
-# Docker PHP-FPM 7.3 & Nginx 1.16 on Alpine Linux
+# Docker Laravel 6.x & PHP-FPM 7.3 & Nginx 1.16 on Alpine Linux
 Example PHP-FPM 7.3 & Nginx 1.16 setup for Docker, build on [Alpine Linux](http://www.alpinelinux.org/).
 The image is only +/- 35MB large.
 
@@ -8,6 +8,7 @@ Repository: https://github.com/TrafeX/docker-php-nginx
 * Built on the lightweight and secure Alpine Linux distribution
 * Very small Docker image size (+/-35MB)
 * Uses PHP 7.3 for better performance, lower cpu usage & memory footprint
+* Uses Laravel 6.x in src directories
 * Optimized for 100 concurrent users
 * Optimized to only use resources when there's traffic (by using PHP-FPM's ondemand PM)
 * The servers Nginx, PHP-FPM and supervisord run under a non-privileged user (nobody) to make it more secure
@@ -28,6 +29,10 @@ To be able to run Nginx as a non-privileged user, the port it's running on neede
 to change to a non-privileged port (above 1024).
 
 The last build of the old version that exposed port 80 was `trafex/alpine-nginx-php7:ba1dd422`
+
+### Breaking changes and Add Laravel 6.x (27/09/2019)
+
+Add Laravel 6.x to container for run laravel into container
 
 ## Usage
 
