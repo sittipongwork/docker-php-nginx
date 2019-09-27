@@ -35,26 +35,23 @@ RUN chown -R nobody.nobody /run && \
   chown -R nobody.nobody /.composer && \
   chown -R nobody.nobody /var/www/html/vendor
 
-# Make the document root a volume
-VOLUME /var/www/html
-
 # Switch to use a non-root user from here on
 USER nobody
+
+COPY --chown=nobody src/ /var/www/html/
 
 # Add application
 WORKDIR /var/www/html
 
-COPY --chown=nobody src/ /var/www/html/
+# Install Package Dependency
+RUN composer install --optimize-autoloader --no-dev --ignore-platform-reqs
 
 # Add Read Permission to storage and public
 RUN chmod -R 755 /var/www/html/storage && \
   chmod -R 755 /var/www/html/public
 
-# Install Package Dependency
-RUN composer install --optimize-autoloader --no-dev --ignore-platform-reqs
-
-RUN composer dump-autoload --optimize && \
-    composer run-scripts post-install-cmd
+# Make the document root a volume
+VOLUME /var/www/html
 
 # Expose the port nginx is reachable on
 EXPOSE 8080
