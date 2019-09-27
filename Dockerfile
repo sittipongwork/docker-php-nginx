@@ -38,6 +38,7 @@ RUN chown -R nobody.nobody /run && \
 # Switch to use a non-root user from here on
 USER nobody
 
+# Copy source code to Container work place
 COPY --chown=nobody src/ /var/www/html/
 
 # Add application
